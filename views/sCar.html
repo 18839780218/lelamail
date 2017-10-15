@@ -1,0 +1,32 @@
+<ion-view>
+    <ion-header-bar align-title="center" class="bar-positive">
+        <h1 class="title">购物车</h1>
+    </ion-header-bar>
+    <ion-content>
+        <!--商品列表-->
+        <div class="item firstList">
+            <input type="checkbox"  id="all" ng-checked="selectAll" ng-model="selectAll" ng-click="mine.allSelect(selectAll)">
+            <label for="all">全选</label>
+        </div>
+        <div class="item" ng-repeat="x in mine.dataList">
+            <input type="checkbox" id="{{x.id}}" ng-checked="selectAll"  ng-click="mine.flag(selected,$index)" ng-model="selected" >
+            <label for="{{x.id}}">
+                <div class="list">
+                    <div class="item item-avatar " >
+                        <img src="{{x.image}}" alt="" title="">
+                        <h2>{{x.goodsName}}</h2>
+                        <p>{{x.goodsPrice}}元/碗</p>
+                    </div>
+                </div>
+            </label>
+            <div id="count">
+                <span ng-click="reduceOne(x.id)" >-</span>
+                <input type="number" ng-model="x.count" >
+                <span ng-click="addOne(x.id)" >+</span>
+            </div>
+        </div>
+    </ion-content>
+    <div id="allPrice">
+        <p>合计: <span>{{sumPrice()}}元</span></p>
+    </div>
+</ion-view>
